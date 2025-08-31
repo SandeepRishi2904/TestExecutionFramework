@@ -1,21 +1,23 @@
 # TestExecutionFramework
 Overview
 The TestExecutionFramework is a Spring Boot application designed to manage and execute test cases (e.g., UI and API tests) and generate reports in CSV format. It integrates with a MySQL database to store test cases and their results, leveraging Spring Data JPA for persistence and OpenCSV for report generation. The framework supports automated test execution and provides a REST API for interaction.
-Features
+
+**Features**
 
 Create and manage test cases (UI and API types).
 Execute tests asynchronously and store results.
 Generate a downloadable CSV report of test cases and results.
 Utilizes Selenium for UI testing and REST-assured for API testing.
 
-Prerequisites
+**Prerequisites**
 
 Java 21: Ensure JDK 21 is installed (e.g., from Oracle).
 Maven 3.x: For building and managing dependencies.
 MySQL 8.x: For the database.
 IntelliJ IDEA (optional): For development and debugging.
 
-Setup Instructions
+**Setup Instructions**
+
 1. Clone the Repository
 git clone <repository-url>
 cd TestExecutionFramework
@@ -35,13 +37,9 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
 spring.jpa.hibernate.ddl-auto=update
 
-
-
 3. Build the Project
 
 Run the following command to build and resolve dependencies:mvn clean install
-
-
 
 4. Run the Application
 
@@ -59,8 +57,8 @@ Execute the tests:curl -X POST -H "Content-Type: application/json" -d '[1, 2]' h
 
 
 
-Usage
-Endpoints
+**Usage
+Endpoints**
 
 Create Test Cases: POST /tests
 Body: [{"name":"TestName","type":"UI|API"}]
@@ -77,7 +75,7 @@ Response: Downloads test_report.csv with columns: TestCase ID, Name, Type, Statu
 
 
 
-Download Report Programmatically
+**Download Report Programmatically**
 A utility class ReportDownloader is included to fetch the CSV report:
 
 Location: src/main/java/com/example/TestExecutionFramework/util/ReportDownloader.java
@@ -86,7 +84,7 @@ Run via IntelliJ or command line:& "C:\Program Files\Java\jdk-21\bin\java.exe" "
 
 Ensure the application is running before executing.
 
-Troubleshooting
+**Troubleshooting**
 Common Issues
 
 HTTP 500 Error: If test_report.csv contains "Error generating report: Query did not return a unique result", multiple TestResult entries exist for a testCaseId. Fix by:
@@ -105,7 +103,7 @@ AND t1.timestamp < t2.timestamp;
 Database Connection Failure: Verify application.properties settings and ensure MySQL is running.
 PowerShell Command Error: Use the & operator and quote the classpath as shown above.
 
-Logs
+**Logs**
 
 Enable debug logging by adding to application.properties:logging.level.org.springframework=DEBUG
 logging.level.com.example=DEBUG
@@ -113,12 +111,12 @@ logging.level.com.example=DEBUG
 
 Check the console output for stack traces.
 
-Contributing
+**Contributing**
 
 Fork the repository.
 Create a feature branch: git checkout -b feature-name.
 Commit changes: git commit -m "Description".
 Push and submit a pull request.
 
-License
+**License**
 This project is licensed under the MIT License - see the LICENSE file for details.
